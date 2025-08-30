@@ -4,12 +4,32 @@
   <meta charset="UTF-8">
   <title>YYBOOK</title>
   <style>
+    /* 深色模式变量 */
+    :root {
+      --bg-primary: linear-gradient(135deg, #1e3c72, #2a5298);
+      --text-primary: #fff;
+      --text-secondary: #e0e0e0;
+      --card-bg: rgba(255, 255, 255, 0.1);
+      --card-hover-bg: rgba(255, 255, 255, 0.2);
+      --title-primary: #ffffff;
+    }
+
+    [data-theme="dark"] {
+      --bg-primary: linear-gradient(135deg, #0f1a2e, #1a2a4a);
+      --text-primary: #fff;
+      --text-secondary: #cccccc;
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --card-hover-bg: rgba(255, 255, 255, 0.1);
+      --title-primary: #4fc3f7;
+    }
+
     body {
       margin: 0;
       font-family: "Helvetica Neue", Arial, sans-serif;
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
-      color: #fff;
+      background: var(--bg-primary);
+      color: var(--text-primary);
       text-align: center;
+      transition: background 0.3s ease;
     }
 
     header {
@@ -19,24 +39,29 @@
     h1 {
       font-size: 3em;
       margin-bottom: 0.2em;
+      color: var(--title-primary);
+      transition: color 0.3s ease;
     }
 
     p {
       font-size: 1.2em;
-      color: #e0e0e0;
+      color: var(--text-secondary);
+      transition: color 0.3s ease;
     }
 
+    /* --- sections 改动 --- */
     .sections {
       display: flex;
       justify-content: center;
-      flex-wrap: wrap;
+      align-items: stretch;
       margin: 3em auto;
-      max-width: 900px;
+      max-width: 1000px;
       gap: 2em;
+      flex-wrap: wrap;
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.1);
+      background: var(--card-bg);
       border-radius: 15px;
       padding: 2em;
       width: 250px;
@@ -48,13 +73,34 @@
 
     .card:hover {
       transform: translateY(-5px);
-      background: rgba(255, 255, 255, 0.2);
+      background: var(--card-hover-bg);
+    }
+
+    /* --- 滚动图片栏 --- */
+    .carousel {
+      position: relative;
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 15px;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+
+    .carousel img {
+      width: 100%;
+      flex-shrink: 0;
     }
 
     footer {
       padding: 1em 0;
       font-size: 0.9em;
       color: rgba(255, 255, 255, 0.7);
+      transition: color 0.3s ease;
     }
   </style>
 </head>
@@ -64,21 +110,48 @@
     <p>欢迎来到我的小天地</p>
   </header>
 
+
+
   <main class="sections">
-    <a href="history/index.html" class="card">
+    <a href="sections/history/index.html" class="card">
       <h2>历史与哲学</h2>
       <p>一些思考与读书笔记</p>
     </a>
-    <a href="physics/index.html" class="card">
+    <a href="sections/physics/index.html" class="card">
       <h2>物理</h2>
       <p>研究工作与学习心得</p>
     </a>
-    <a href="life/index.html" class="card">
+    <a href="sections/life/index.html" class="card">
       <h2>生活</h2>
       <p>日常点滴与随笔</p>
     </a>
   </main>
 
+  <!-- 滚动图片栏 -->
+  <section class="carousel">
+    <div class="carousel-track" id="carouselTrack">
+      <img src="assets/images/1-central-green.jpg" alt="城市绿心">
+      <img src="assets/images/2-princeton.jpg" alt="普林斯顿">
+      <img src="assets/images/3-ubr.jpg" alt="环球度假区水系">
+    </div>
+  </section>
+
+
   <footer>© 2025 YANYI | All Rights Reserved</footer>
+
+  <script src="assets/js/theme.js"></script>
+  <script>
+    // 简易自动轮播
+    const track = document.getElementById("carouselTrack");
+    const slides = track.children;
+    let index = 0;
+
+    function moveCarousel() {
+      index = (index + 1) % slides.length;
+      track.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    setInterval(moveCarousel, 5000); // 每 5 秒切换一次
+  </script>
 </body>
 </html>
