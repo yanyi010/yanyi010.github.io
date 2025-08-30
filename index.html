@@ -1,11 +1,84 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>闫亿的个人网页</title>
+  <title>YYBOOK</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: #fff;
+      text-align: center;
+    }
+
+    header {
+      padding: 2em 0;
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-bottom: 0.2em;
+    }
+
+    p {
+      font-size: 1.2em;
+      color: #e0e0e0;
+    }
+
+    .sections {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 3em auto;
+      max-width: 900px;
+      gap: 2em;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 2em;
+      width: 250px;
+      transition: transform 0.3s, background 0.3s;
+      cursor: pointer;
+      text-decoration: none;
+      color: white;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    footer {
+      padding: 1em 0;
+      font-size: 0.9em;
+      color: rgba(255, 255, 255, 0.7);
+    }
+  </style>
 </head>
 <body>
-  <h1>正在开发中，敬请关注</h1>
-  <p>Still Developing</p>
+  <header>
+    <h1>YYBOOK</h1>
+    <p>欢迎来到我的小天地</p>
+  </header>
+
+  <main class="sections">
+    <a href="history/index.html" class="card">
+      <h2>历史与哲学</h2>
+      <p>一些思考与读书笔记</p>
+    </a>
+    <a href="physics/index.html" class="card">
+      <h2>物理</h2>
+      <p>研究工作与学习心得</p>
+    </a>
+    <a href="life/index.html" class="card">
+      <h2>生活</h2>
+      <p>日常点滴与随笔</p>
+    </a>
+  </main>
+
+  <footer>© 2025 YANYI | All Rights Reserved</footer>
 </body>
 </html>
